@@ -2,8 +2,99 @@
 <html>
   <head>
     <title>The Game of War</title>
+    <script>
+      let suit = Array.from(Array(13)).map((element, index) => index + 1);
+      let deck = suit.concat(suit, suit, suit);
+
+      let shuffle = [...deck].sort(() => Math.random() - 0.5);
+
+      let handOne = shuffle.slice(0, 26);
+      let handTwo = shuffle.slice(26, 52);
+
+      function getDeck() {
+        document.getElementById("deck").innerHTML = deck;
+        console.log("Deck of cards: ", deck);
+        console.log("Shuffled deck... ", shuffle);
+        console.log("Hand one: ", handOne);
+        console.log("Hand two: ", handTwo);
+      }
+
+      let war = (handOne, handTwo) => {
+        let playerOneScore = 0;
+        let playerTwoScore = 0;
+
+        let intro = "War never changes...";
+        console.log("War never changes...");
+        document.getElementById("intro").innerHTML = intro;
+
+        handOne.forEach((card, index) => {
+          const cardTwo = handTwo[index];
+
+          if (card === cardTwo) {
+            let response = "Tie, no points scored.";
+            document.getElementById("response").innerHTML = response;
+            console.log("Tie, no points scored.");
+          } else if (card === 1) {
+            let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player One.`;
+            document.getElementById("response").innerHTML = response;
+            console.log(
+              `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player One.`
+            );
+            playerOneScore++;
+          } else if (cardTwo === 1) {
+            let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player Two.`;
+            document.getElementById("response").innerHTML = response;
+            console.log(
+              `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player Two.`
+            );
+            playerTwoScore++;
+          } else if (card > cardTwo && (card && cardTwo) != 1) {
+            let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player One Wins this round.`;
+            document.getElementById("response").innerHTML = response;
+            console.log(
+              `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player One Wins this round.`
+            );
+            playerOneScore++;
+          } else if (cardTwo > card && (card && cardTwo) != 1) {
+            let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player Two Wins this round.`;
+            document.getElementById("response").innerHTML = response;
+            console.log(
+              `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player Two Wins this round.`
+            );
+            playerTwoScore++;
+          }
+        });
+
+        let pOneFinalScore = playerOneScore;
+        document.getElementById("pOneFinalScore").innerHTML = pOneFinalScore;
+        let pTwoFinalScore = playerTwoScore;
+        document.getElementById("pTwoFinalScore").innerHTML = pTwoFinalScore;
+        console.log("Final Scores: ", playerOneScore, playerTwoScore);
+
+        if (playerOneScore > playerTwoScore) {
+          console.log("Player One has won the war... but at what cost.");
+          return "Player One has won the war... but at what cost.";
+        } else if (playerOneScore < playerTwoScore) {
+          console.log("Player Two has won the war... but at what cost.");
+          return "Player Two has won the war... but at what cost.";
+        } else {
+          console.log("No one wins in war...");
+          return "No one wins in war...";
+        }
+      };
+    </script>
   </head>
-  <body>
-    <p>War never changes.</p>
+  <body onload="getDeck(); war(handOne, handTwo)">
+
+
+    <p id="deck"></p>
+    <p id="intro"></p>
+    <p id="response"></p>
+    <p id="response"></p>
+    <p id="response"></p>
+    <p id="response"></p>
+    <p id="response"></p>
+    <p id="pOneFinalScore"></p>
+    <p id="pTwoFinalScore"></p>
   </body>
 </html>

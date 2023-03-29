@@ -73,10 +73,7 @@
           }
 
           main.innerHTML = htmlString;
-          // htmlString += `<p>${response}<p>`;
         });
-
-        
 
         let pOneFinalScore = playerOneScore;
         document.getElementById("pOneFinalScore").innerHTML = pOneFinalScore;
@@ -97,11 +94,17 @@
       };
     </script>
   </head>
-  <body onload="getDeck(); war(handOne, handTwo)">
+  <body onload="getDeck()">
     <p id="deck"></p>
     <p id="intro"></p>
     <main></main>
     <p id="pOneFinalScore"></p>
     <p id="pTwoFinalScore"></p>
+    <button onclick="war(handOne, handTwo)">Run Game</button>
+    <button onclick="window.location.reload()">Refresh</button>
   </body>
 </html>
+
+<!-- https://www.youtube.com/watch?v=zIh16K8BN7k
+Kootkot: I was looking for a way to display each iteration of the game in browser.
+^their tutorial on doing just that was incredibly helpful. -->

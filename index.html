@@ -27,43 +27,56 @@
         console.log("War never changes...");
         document.getElementById("intro").innerHTML = intro;
 
+        const main = document.querySelector('main');
+        let htmlString = "";
+
         handOne.forEach((card, index) => {
           const cardTwo = handTwo[index];
 
           if (card === cardTwo) {
             let response = "Tie, no points scored.";
-            document.getElementById("response").innerHTML = response;
+            htmlString += `<p>${response}<p>`;
+            // document.getElementById("response").innerHTML = response;
             console.log("Tie, no points scored.");
           } else if (card === 1) {
             let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player One.`;
-            document.getElementById("response").innerHTML = response;
+            htmlString += `<p>${response}<p>`;
+            // document.getElementById("response").innerHTML = response;
             console.log(
               `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player One.`
             );
             playerOneScore++;
           } else if (cardTwo === 1) {
             let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player Two.`;
-            document.getElementById("response").innerHTML = response;
+            htmlString += `<p>${response}<p>`;
+            // document.getElementById("response").innerHTML = response;
             console.log(
               `Player One Played: ${card}. Player Two Played: ${cardTwo}. Aces wins this round. Point to Player Two.`
             );
             playerTwoScore++;
           } else if (card > cardTwo && (card && cardTwo) != 1) {
             let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player One Wins this round.`;
-            document.getElementById("response").innerHTML = response;
+            htmlString += `<p>${response}<p>`;
+            // document.getElementById("response").innerHTML = response;
             console.log(
               `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player One Wins this round.`
             );
             playerOneScore++;
           } else if (cardTwo > card && (card && cardTwo) != 1) {
             let response = `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player Two Wins this round.`;
-            document.getElementById("response").innerHTML = response;
+            htmlString += `<p>${response}<p>`;
+            // document.getElementById("response").innerHTML = response;
             console.log(
               `Player One Played: ${card}. Player Two Played: ${cardTwo}. Player Two Wins this round.`
             );
             playerTwoScore++;
           }
+
+          main.innerHTML = htmlString;
+          // htmlString += `<p>${response}<p>`;
         });
+
+        
 
         let pOneFinalScore = playerOneScore;
         document.getElementById("pOneFinalScore").innerHTML = pOneFinalScore;
@@ -85,15 +98,9 @@
     </script>
   </head>
   <body onload="getDeck(); war(handOne, handTwo)">
-
-
     <p id="deck"></p>
     <p id="intro"></p>
-    <p id="response"></p>
-    <p id="response"></p>
-    <p id="response"></p>
-    <p id="response"></p>
-    <p id="response"></p>
+    <main></main>
     <p id="pOneFinalScore"></p>
     <p id="pTwoFinalScore"></p>
   </body>

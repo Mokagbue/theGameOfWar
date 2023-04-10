@@ -1,4 +1,5 @@
-let cards = [
+export default cards = [
+// let cards = [
     {card: "club-ace",
     cardNumber: 1,
     cardImage: "CardImages/club-ace.png"
@@ -208,4 +209,4 @@ let cards = [
     cardImage: "heart-king.png"
     },
 ]
-module.exports = cards;
+//module.exports = cards;
